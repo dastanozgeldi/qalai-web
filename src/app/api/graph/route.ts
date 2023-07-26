@@ -1,9 +1,11 @@
 import { NextResponse } from "next/server"
 
-export async function POST(req: Request) {
-  try {
-    const { input_text } = await req.json()
+export const runtime = "edge"
 
+export async function POST(req: Request) {
+  const { input_text } = await req.json()
+
+  try {
     const response = await fetch(`${process.env.HOST}/get_graph`, {
       method: "POST",
       mode: "cors",
