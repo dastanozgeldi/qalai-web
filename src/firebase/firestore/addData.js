@@ -11,7 +11,6 @@ export default async function addData(colllection, id, data) {
     result = await setDoc(doc(db, colllection, id), data, {
       merge: true,
     })
-    console.log("Document written with ID: ", result)
   } catch (e) {
     error = e
   }

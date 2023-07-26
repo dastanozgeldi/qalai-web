@@ -1,25 +1,25 @@
 import { NextResponse } from "next/server"
-import fetch from "node-fetch"
 
 export async function POST(req: Request) {
   try {
-    const fastApiEndpoint = `${process.env.HOST}/get_graph`
-    const res = await req.json()
+    const { input_text } = await req.json()
 
-    const inputText = res.input_text
-
-    // Send a POST request to the FastAPI endpoint
-    const fastApiResponse = await fetch(fastApiEndpoint, {
+    const response = await fetch(`${process.env.HOST}/get_graph`, {
       method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ input_text: inputText }),
+      redirect: "follow",
+      referrerPolicy: "no-referrer",
+      body: JSON.stringify({ input_text }),
     })
 
-    const archSuggestion = await fastApiResponse.json()
+    const data = await response.json()
 
-    return new NextResponse(JSON.stringify(archSuggestion), {
+    return new NextResponse(JSON.stringify(data), {
       headers: {
         "Content-Type": "application/json",
         "Cache-Control": "s-maxage=300, stale-while-revalidate",
