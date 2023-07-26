@@ -8,7 +8,6 @@ import { AppInputCard } from "@/components/AppInputCard"
 import { DescriptionCard } from "@/components/DescriptionCard"
 import { SuggestionDisplayCard } from "@/components/SuggestionDisplayCard"
 
-// Define the types for data received from the API
 interface Topic {
   topic: string
   connected_topics?: Topic[]
@@ -34,7 +33,7 @@ const IndexPage: React.FC = () => {
     setTopicsDescription("")
 
     try {
-      const response = await fetch("/api/arch_suggestion", {
+      const response = await fetch("/api/graph", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
