@@ -1,4 +1,4 @@
-import { getApps, initializeApp } from "firebase/app"
+import { getApp, getApps, initializeApp } from "firebase/app"
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -11,7 +11,6 @@ const firebaseConfig = {
 }
 
 // Initialize Firebase
-let firebase_app =
-  getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0]
+const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig)
 
-export default firebase_app
+export default app

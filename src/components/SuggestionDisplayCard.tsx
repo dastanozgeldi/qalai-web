@@ -13,13 +13,13 @@ interface SuggestionDisplayCardProps {
 
 export function SuggestionDisplayCard(props: SuggestionDisplayCardProps) {
   return (
-    <Card style={{ width: "100%", height: "100%" }}>
+    <Card className="w-full h-screen">
       <CardHeader>
         <CardTitle>Architecture Diagram</CardTitle>
         <CardDescription>Suggested architecture diagram</CardDescription>
       </CardHeader>
       <CardContent style={{ height: "calc(100% - 90px)" }}>
-        <div style={{ width: "100%", height: "100%" }}>
+        <div className="w-full h-full">
           <NetworkVisualizer adjacencyDict={props.archSuggestion} />
         </div>
       </CardContent>

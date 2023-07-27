@@ -1,6 +1,6 @@
 "use-client"
 
-import * as React from "react"
+import { useState } from "react"
 import { Check, Loader2 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -21,14 +21,14 @@ interface AppInputCardProps {
 }
 
 export function AppInputCard(props: AppInputCardProps) {
-  const [projectDescription, setProjectDescription] = React.useState("")
+  const [projectDescription, setProjectDescription] = useState("")
+
   return (
-    <Card className="w-[350px]" style={{ height: "100%" }}>
+    <Card className="w-full h-full">
       <CardHeader>
         <CardTitle>Get a graph of topics</CardTitle>
         <CardDescription>
-          Enter a description of the app you would like to create to get cloud
-          architecture suggestions
+          The graph generation process takes ~1 minute.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -38,7 +38,7 @@ export function AppInputCard(props: AppInputCardProps) {
               <Label htmlFor="name">Name</Label>
               <Textarea
                 onChange={(event) => setProjectDescription(event?.target.value)}
-                placeholder="Project description here."
+                placeholder="Topic name here."
               />
             </div>
           </div>
