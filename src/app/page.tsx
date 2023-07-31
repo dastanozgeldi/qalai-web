@@ -17,28 +17,32 @@ interface SuggestionResponse {
 }
 
 const Dashboard = () => {
-  // State variables
   const [archSuggestion, setArchSuggestion] = useState<{
     [key: string]: string[]
   } | null>(null)
-  const [preLoader, setPreLoader] = useState<boolean>(false)
+  const [preLoader, setPreLoader] = useState(false)
 
-  // Function to fetch suggested topics from the API
-  const fetchArchSuggestion = async (projectDescription: string) => {
-    setPreLoader(true) // Show preloader
+  const onSubmit = async (input_text: string) => {
+    setPreLoader(true)
     setArchSuggestion(null)
 
     try {
-      const response = await fetch("/api/graph", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API}/get_graph`, {
         method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ input_text: projectDescription }),
+        redirect: "follow",
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify({ input_text }),
       })
 
       const data: SuggestionResponse = JSON.parse(await response.json())
-      await addData("topics", uuid(), { name: projectDescription, ...data })
+      console.log(data)
+      await addData("topics", uuid(), { name: input_text, ...data })
 
       // Creating adjacency dictionary from the fetched data
       const adjacency_dict: { [key: string]: string[] } = {}
@@ -52,13 +56,13 @@ const Dashboard = () => {
     } catch (error) {
       console.error("Error fetching architecture suggestion:", error)
     } finally {
-      setPreLoader(false) // Hide preloader
+      setPreLoader(false)
     }
   }
 
   return (
     <div className="max-w-4xl m-auto space-y-6">
-      <AppInputCard loading={preLoader} onSubmit={fetchArchSuggestion} />
+      <AppInputCard loading={preLoader} onSubmit={onSubmit} />
       <SuggestionDisplayCard archSuggestion={archSuggestion} />
     </div>
   )

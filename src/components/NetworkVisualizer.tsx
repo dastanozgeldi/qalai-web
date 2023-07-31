@@ -2,7 +2,6 @@ import { useEffect, useRef } from "react"
 import * as d3 from "d3"
 
 export default function NetworkVisualizer({ adjacencyDict }: any) {
-  console.log(`Adjacency dict: ${JSON.stringify(adjacencyDict)}`)
   const d3Container = useRef<SVGSVGElement>(null)
 
   useEffect(() => {
@@ -64,8 +63,6 @@ export default function NetworkVisualizer({ adjacencyDict }: any) {
         id: key,
         name: key,
       }))
-
-      console.log("This is nodes", nodes)
 
       const links = nodes.flatMap((node) =>
         adjacencyDict[node.id].map((targetId: number) => ({
