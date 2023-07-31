@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server"
 
-export const runtime = "edge"
+export const config = {
+  runtime: "edge",
+}
 
 export async function POST(req: Request) {
   const { input_text } = await req.json()
