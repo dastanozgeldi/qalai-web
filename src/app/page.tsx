@@ -5,7 +5,6 @@ import { addData } from "@/firebase/firestore"
 import { v4 as uuid } from "uuid"
 
 import { AppInputCard } from "@/components/AppInputCard"
-// import { DescriptionCard } from "@/components/DescriptionCard"
 import { SuggestionDisplayCard } from "@/components/SuggestionDisplayCard"
 
 interface Topic {
@@ -14,7 +13,6 @@ interface Topic {
 }
 
 interface SuggestionResponse {
-  topics_description: string
   topic_list: Topic[]
 }
 
@@ -23,14 +21,12 @@ const Dashboard = () => {
   const [archSuggestion, setArchSuggestion] = useState<{
     [key: string]: string[]
   } | null>(null)
-  // const [topicsDescription, setTopicsDescription] = useState<string>("")
   const [preLoader, setPreLoader] = useState<boolean>(false)
 
   // Function to fetch suggested topics from the API
   const fetchArchSuggestion = async (projectDescription: string) => {
     setPreLoader(true) // Show preloader
     setArchSuggestion(null)
-    // setTopicsDescription("")
 
     try {
       const response = await fetch("/api/graph", {
@@ -43,7 +39,6 @@ const Dashboard = () => {
 
       const data: SuggestionResponse = JSON.parse(await response.json())
       await addData("topics", uuid(), { name: projectDescription, ...data })
-      // setTopicsDescription(data.topics_description)
 
       // Creating adjacency dictionary from the fetched data
       const adjacency_dict: { [key: string]: string[] } = {}

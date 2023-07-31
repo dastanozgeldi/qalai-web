@@ -42,7 +42,7 @@ export default function NetworkVisualizer({ adjacencyDict }: any) {
             if (link.source === d || link.target === d) {
               const otherNode = link.source === d ? link.target : link.source
               const otherNodeColor = "#eb367f"
-              d3.select(`[data-id='${otherNode.id.replace(/'/g, "\\'")}']`)
+              d3.select(`[data-id='${otherNode.id}]'`)
                 .select("circle")
                 .attr("fill", otherNodeColor)
             }
@@ -64,6 +64,8 @@ export default function NetworkVisualizer({ adjacencyDict }: any) {
         id: key,
         name: key,
       }))
+
+      console.log("This is nodes", nodes)
 
       const links = nodes.flatMap((node) =>
         adjacencyDict[node.id].map((targetId: number) => ({

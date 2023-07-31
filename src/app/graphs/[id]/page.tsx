@@ -5,7 +5,6 @@ import { getData } from "@/firebase/firestore"
 
 type Graph = {
   name: string
-  topics_description: string
   topic_list: any[]
 }
 
@@ -26,8 +25,6 @@ export default function ViewGraph({ params }: { params: { id: string } }) {
     graph && (
       <div className="border max-w-4xl mx-auto my-4 w-full p-6 border-gray-600 rounded-lg prose dark:prose-invert">
         <h1>{graph.name}</h1>
-        <p>{graph.topics_description}</p>
-
         <div>
           <h2>Here are the related topics to revise:</h2>
           {graph.topic_list.map((topic: any) => (
