@@ -1,11 +1,14 @@
 "use client"
 
 import { useState } from "react"
+import { auth } from "@/firebase/config"
 import { addData } from "@/firebase/firestore"
+import { useAuthState } from "react-firebase-hooks/auth"
 import { v4 as uuid } from "uuid"
 
 import { AppInputCard } from "@/components/AppInputCard"
 import { SuggestionDisplayCard } from "@/components/SuggestionDisplayCard"
+import { SignIn } from "@/components/sign-in"
 
 interface Topic {
   topic: string
@@ -17,12 +20,13 @@ interface SuggestionResponse {
 }
 
 const Dashboard = () => {
+  const [user, loading, error] = useAuthState(auth)
   const [archSuggestion, setArchSuggestion] = useState<{
     [key: string]: string[]
   } | null>(null)
   const [preLoader, setPreLoader] = useState(false)
 
-  const onSubmit = async (input_text: string) => {
+  const handleSubmit = async (input_text: string) => {
     setPreLoader(true)
     setArchSuggestion(null)
 
@@ -42,7 +46,11 @@ const Dashboard = () => {
 
       const data: SuggestionResponse = JSON.parse(await response.json())
       console.log(data)
-      await addData("topics", uuid(), { name: input_text, ...data })
+      await addData("topics", uuid(), {
+        name: input_text,
+        user_id: user?.uid,
+        ...data,
+      })
 
       // Creating adjacency dictionary from the fetched data
       const adjacency_dict: { [key: string]: string[] } = {}
@@ -60,11 +68,13 @@ const Dashboard = () => {
     }
   }
 
-  return (
+  return user ? (
     <div className="max-w-4xl m-auto space-y-6">
-      <AppInputCard loading={preLoader} onSubmit={onSubmit} />
+      <AppInputCard loading={preLoader} onSubmit={handleSubmit} />
       <SuggestionDisplayCard archSuggestion={archSuggestion} />
     </div>
+  ) : (
+    <SignIn />
   )
 }
 

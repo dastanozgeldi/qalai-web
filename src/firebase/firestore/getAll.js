@@ -1,8 +1,6 @@
-import { collection, getDocs, getFirestore, query } from "firebase/firestore"
+import { collection, getDocs, query } from "firebase/firestore"
 
-import firebase_app from "../config"
-
-const db = getFirestore(firebase_app)
+import { db } from "../config"
 
 export default async function getAll() {
   const q = query(collection(db, "topics"))
