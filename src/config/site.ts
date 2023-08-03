@@ -1,7 +1,7 @@
 export type SiteConfig = typeof siteConfig
 
 export const siteConfig = {
-  name: "qalai",
+  name: "Qal.AI",
   description:
     "Beautifully designed components built with Radix UI and Tailwind CSS.",
 

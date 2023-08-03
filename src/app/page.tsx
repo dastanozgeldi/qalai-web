@@ -74,7 +74,7 @@ const Dashboard = () => {
   }
   return (
     user && (
-      <div className="max-w-4xl m-auto space-y-6">
+      <div className="max-w-4xl m-auto space-y-6 p-6">
         <AppInputCard loading={preLoader} onSubmit={handleSubmit} />
         <SuggestionDisplayCard archSuggestion={archSuggestion} />
       </div>
