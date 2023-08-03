@@ -1,8 +1,8 @@
 import {
   Key,
   Loader2,
-  LogInIcon,
-  LogOutIcon,
+  LogIn,
+  LogOut,
   LucideProps,
   Moon,
   SunMedium,
@@ -16,8 +16,8 @@ export const Icons = {
   moon: Moon,
   key: Key,
   spinner: Loader2,
-  login: LogInIcon,
-  logout: LogOutIcon,
+  login: LogIn,
+  logout: LogOut,
   google: (props: LucideProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
