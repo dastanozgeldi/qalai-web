@@ -1,7 +1,14 @@
 import { useEffect, useRef } from "react"
 import * as d3 from "d3"
 
-export default function NetworkVisualizer({ adjacencyDict }: any) {
+interface GraphVisualizerProps extends React.HTMLAttributes<SVGSVGElement> {
+  adjacencyDict: any
+}
+
+export default function GraphVisualizer({
+  adjacencyDict,
+  ...props
+}: GraphVisualizerProps) {
   const d3Container = useRef<SVGSVGElement>(null)
 
   useEffect(() => {
@@ -144,5 +151,5 @@ export default function NetworkVisualizer({ adjacencyDict }: any) {
     }
   }, [adjacencyDict])
 
-  return <svg ref={d3Container} width="100%" height="100%" />
+  return <svg ref={d3Container} width="100%" height="100%" {...props} />
 }

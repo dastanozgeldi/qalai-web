@@ -3,38 +3,46 @@
 import React from "react"
 import { getData } from "@/firebase/firestore"
 
+import GraphVisualizer from "@/components/graph-visualizer"
+
+interface ViewGraphProps {
+  params: {
+    id: string
+  }
+}
+
 type Graph = {
   name: string
   topic_list: any[]
 }
 
-export default function ViewGraph({ params }: { params: { id: string } }) {
+export default function ViewGraph({ params }: ViewGraphProps) {
   const [graph, setGraph] = React.useState<Graph>()
 
   React.useEffect(() => {
     const getGraph = async () => {
       const { result } = await getData("topics", params.id)
       const graph = result?.data()
-      console.log(graph)
-      setGraph(graph as any)
+
+      if (!graph) return
+
+      const adjacency_dict: { [key: string]: string[] } = {}
+
+      for (const topic of graph.topic_list) {
+        const connected_topics =
+          topic.connected_topics?.map(
+            (outputTopic: any) => outputTopic.topic
+          ) || []
+        adjacency_dict[topic.topic] = connected_topics
+      }
+      setGraph(adjacency_dict as any)
     }
     getGraph()
   }, [])
 
   return (
     graph && (
-      <div className="border max-w-4xl mx-auto my-4 w-full p-6 border-gray-600 rounded-lg prose dark:prose-invert">
-        <h1>{graph.name}</h1>
-        <div>
-          <h2>Here are the related topics to revise:</h2>
-          {graph.topic_list.map((topic: any) => (
-            <div className="p-2 border-gray-600 rounded-lg border-y">
-              <h3>{topic.topic}</h3>
-              <p>{topic.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
+      <GraphVisualizer adjacencyDict={graph} className="w-full h-screen" />
     )
   )
 }

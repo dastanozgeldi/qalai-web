@@ -8,7 +8,7 @@ import { useAuthState } from "react-firebase-hooks/auth"
 import { v4 as uuid } from "uuid"
 
 import { AppInputCard } from "@/components/input-card"
-import { SuggestionDisplayCard } from "@/components/suggestions-card"
+import { GraphDisplayCard } from "@/components/suggestions-card"
 
 interface Topic {
   topic: string
@@ -76,7 +76,7 @@ const Dashboard = () => {
     user && (
       <div className="max-w-4xl m-auto space-y-6 p-6">
         <AppInputCard loading={preLoader} onSubmit={handleSubmit} />
-        <SuggestionDisplayCard archSuggestion={archSuggestion} />
+        <GraphDisplayCard archSuggestion={archSuggestion} />
       </div>
     )
   )

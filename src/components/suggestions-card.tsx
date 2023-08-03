@@ -1,4 +1,4 @@
-import NetworkVisualizer from "./graph-visualizer"
+import GraphVisualizer from "./graph-visualizer"
 import {
   Card,
   CardContent,
@@ -7,11 +7,13 @@ import {
   CardTitle,
 } from "./ui/card"
 
-interface SuggestionDisplayCardProps {
+interface GraphDisplayCardProps {
   archSuggestion: { [key: string]: string[] } | null
 }
 
-export function SuggestionDisplayCard(props: SuggestionDisplayCardProps) {
+export function GraphDisplayCard({
+  archSuggestion,
+}: GraphDisplayCardProps) {
   return (
     <Card className="w-full h-screen">
       <CardHeader>
@@ -20,7 +22,7 @@ export function SuggestionDisplayCard(props: SuggestionDisplayCardProps) {
       </CardHeader>
       <CardContent style={{ height: "calc(100% - 90px)" }}>
         <div className="w-full h-full">
-          <NetworkVisualizer adjacencyDict={props.archSuggestion} />
+          <GraphVisualizer adjacencyDict={archSuggestion} />
         </div>
       </CardContent>
     </Card>

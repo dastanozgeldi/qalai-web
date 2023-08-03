@@ -1,5 +1,12 @@
 import {
+  AlignEndHorizontal,
+  Code2,
+  Command,
+  Github,
+  Home,
+  Instagram,
   Key,
+  Linkedin,
   Loader2,
   LogIn,
   LogOut,
@@ -12,6 +19,13 @@ import {
 export type Icon = LucideIcon
 
 export const Icons = {
+  home: Home,
+  dashboard: AlignEndHorizontal,
+  code: Code2,
+  command: Command,
+  github: Github,
+  instagram: Instagram,
+  linkedin: Linkedin,
   sun: SunMedium,
   moon: Moon,
   key: Key,
