@@ -29,6 +29,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       <Button
         variant="outline"
         type="button"
+        disabled={loading}
         onClick={async () => {
           const user = await signInWithGoogle()
           if (user) {
