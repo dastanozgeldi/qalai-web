@@ -1,14 +1,14 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { auth } from "@/firebase/config"
 import { addData } from "@/firebase/firestore"
 import { useAuthState } from "react-firebase-hooks/auth"
 import { v4 as uuid } from "uuid"
 
-import { AppInputCard } from "@/components/AppInputCard"
-import { SuggestionDisplayCard } from "@/components/SuggestionDisplayCard"
-import { SignIn } from "@/components/sign-in"
+import { AppInputCard } from "@/components/input-card"
+import { SuggestionDisplayCard } from "@/components/suggestions-card"
 
 interface Topic {
   topic: string
@@ -25,6 +25,7 @@ const Dashboard = () => {
     [key: string]: string[]
   } | null>(null)
   const [preLoader, setPreLoader] = useState(false)
+  const router = useRouter()
 
   const handleSubmit = async (input_text: string) => {
     setPreLoader(true)
@@ -68,13 +69,16 @@ const Dashboard = () => {
     }
   }
 
-  return user ? (
-    <div className="max-w-4xl m-auto space-y-6">
-      <AppInputCard loading={preLoader} onSubmit={handleSubmit} />
-      <SuggestionDisplayCard archSuggestion={archSuggestion} />
-    </div>
-  ) : (
-    <SignIn />
+  if (!loading && !user) {
+    return router.push("/login")
+  }
+  return (
+    user && (
+      <div className="max-w-4xl m-auto space-y-6">
+        <AppInputCard loading={preLoader} onSubmit={handleSubmit} />
+        <SuggestionDisplayCard archSuggestion={archSuggestion} />
+      </div>
+    )
   )
 }
 

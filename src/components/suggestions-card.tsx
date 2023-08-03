@@ -1,4 +1,4 @@
-import NetworkVisualizer from "./NetworkVisualizer"
+import NetworkVisualizer from "./graph-visualizer"
 import {
   Card,
   CardContent,
