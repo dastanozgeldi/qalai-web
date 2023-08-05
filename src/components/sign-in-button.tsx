@@ -22,8 +22,7 @@ export function SignInButton() {
 
   return logged ? (
     <Button
-      className="flex items-center gap-2"
-      variant="ghost"
+      className="flex items-center gap-2 text-md"
       size="sm"
       onClick={async () => {
         const success = await signOut()
@@ -32,16 +31,15 @@ export function SignInButton() {
         }
       }}
     >
-      <Icons.logout />
+      <Icons.logout size={16} /> Sign Out
     </Button>
   ) : (
     <Button
       className="flex items-center gap-2"
-      variant="ghost"
       size="sm"
       onClick={() => router.push("/login")}
     >
-      <Icons.login />
+      <Icons.login size={16} /> Sign In
     </Button>
   )
 }
