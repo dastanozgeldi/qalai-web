@@ -58,6 +58,11 @@ export const CommandMenu = () => {
           onSelect: () => runCommand(() => router.push("/")),
         },
         {
+          title: "Generate",
+          icon: <Icons.plus size={16} className="mr-2" />,
+          onSelect: () => runCommand(() => router.push("/generate")),
+        },
+        {
           title: "Dashboard",
           icon: <Icons.dashboard size={16} className="mr-2" />,
           onSelect: () => runCommand(() => router.push("/dashboard")),

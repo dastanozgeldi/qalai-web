@@ -12,6 +12,7 @@ import {
   LogOut,
   LucideProps,
   Moon,
+  PlusCircle,
   SunMedium,
   type Icon as LucideIcon,
 } from "lucide-react"
@@ -20,6 +21,7 @@ export type Icon = LucideIcon
 
 export const Icons = {
   home: Home,
+  plus: PlusCircle,
   dashboard: AlignEndHorizontal,
   code: Code2,
   command: Command,
