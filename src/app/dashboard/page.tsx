@@ -12,13 +12,20 @@ export default function MyGraphs() {
   const [graphs, setGraphs] = React.useState<Graph[] | null>([])
   const [user, loading] = useAuthState(auth)
 
+  const compareByCreatedAtDesc = (a: Graph, b: Graph) => {
+    return b.data.created_at.toMillis() - a.data.created_at.toMillis()
+  }
+
   React.useEffect(() => {
     const getGraphs = async (uid: string) => {
       const { data } = await getUserTopics(uid)
-      setGraphs(data)
+      if (data) {
+        console.log(data)
+        setGraphs(data!.sort(compareByCreatedAtDesc))
+      }
     }
     if (!loading && user) getGraphs(user.uid)
-  }, [])
+  }, [user])
 
   return (
     <div className="max-w-4xl mx-auto my-4 p-6">
