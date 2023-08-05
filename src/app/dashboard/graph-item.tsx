@@ -1,21 +1,15 @@
 import Link from "next/link"
 import { useFormattedDate } from "@/hooks"
+import { Graph } from "@/types"
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion"
 
 import { Skeleton } from "@/components/ui/skeleton"
 
-interface GraphItemProps {
-  graph: {
-    id: string
-    data: any
-  }
-}
+export const GraphItem = ({ graph }: { graph: Graph }) => {
+  const { name, created_at, topic_list } = graph.data
+  const topics = topic_list.map((topic) => topic.topic).slice(0, 3)
 
-export const GraphItem = ({ graph }: GraphItemProps) => {
-  const formattedDate = useFormattedDate(
-    graph.data.created_at.toDate(),
-    "YYYY-MM-DD"
-  )
+  const formattedDate = useFormattedDate(created_at.toDate(), "YYYY-MM-DD")
 
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
@@ -50,15 +44,14 @@ export const GraphItem = ({ graph }: GraphItemProps) => {
         width={1280}
         height={720}
         src="https://images.unsplash.com/photo-1659441891288-2628f5b3a500?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGFlODZ8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=900&q=60"
-        alt={graph.data.name}
+        alt={name}
       />
-      <div className="flex-grow space-y-4">
-        <h2 className="text-xl font-bold">{graph.data.name}</h2>
-        <div className="text-accent-5">mamamamam</div>
+      <div className="flex-grow space-y-1">
+        <h2 className="text-xl font-bold">{name}</h2>
+        <div className="text-gray-400">{topics.toString()} ...</div>
       </div>
       <div className="flex items-center text-sm">
         {formattedDate ? formattedDate : <Skeleton className="h-5 w-10" />}
-        &nbsp;/&nbsp; 585 likes &nbsp;/&nbsp; 1840 views
       </div>
     </Link>
   )

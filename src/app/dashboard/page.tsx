@@ -3,12 +3,13 @@
 import React from "react"
 import { auth } from "@/firebase/config"
 import { getUserTopics } from "@/firebase/firestore"
+import { Graph } from "@/types"
 import { useAuthState } from "react-firebase-hooks/auth"
 
 import { GraphItem } from "./graph-item"
 
 export default function MyGraphs() {
-  const [graphs, setGraphs] = React.useState<any[] | null>([])
+  const [graphs, setGraphs] = React.useState<Graph[] | null>([])
   const [user, loading] = useAuthState(auth)
 
   React.useEffect(() => {

@@ -1,8 +1,13 @@
+import { GraphInput } from "@/types"
 import { doc, setDoc } from "firebase/firestore"
 
 import { db } from "../config"
 
-export default async function addData(colllection, id, data) {
+export async function addData(
+  colllection: string,
+  id: string,
+  data: GraphInput
+) {
   let result = null
   let error = null
 

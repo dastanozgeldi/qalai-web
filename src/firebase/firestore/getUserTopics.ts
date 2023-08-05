@@ -1,12 +1,13 @@
+import { Graph } from "@/types"
 import { collection, getDocs, orderBy, query, where } from "firebase/firestore"
 
 import { db } from "../config"
 
-export default async function getUserTopics(user_id) {
+export async function getUserTopics(user_id: string) {
   const collectionRef = collection(db, "topics")
   const sortedQuery = query(
     collectionRef,
-    // orderBy("created_at", "desc"),
+    orderBy("created_at", "desc"),
     where("user_id", "==", user_id)
   )
 
@@ -18,7 +19,7 @@ export default async function getUserTopics(user_id) {
     data = queryShapshot.docs.map((doc) => ({
       id: doc.id,
       data: doc.data(),
-    }))
+    })) as Graph[]
 
     console.log(data)
   } catch (e) {
