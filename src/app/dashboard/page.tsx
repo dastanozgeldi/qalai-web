@@ -9,14 +9,14 @@ import { GraphItem } from "./graph-item"
 
 export default function MyGraphs() {
   const [graphs, setGraphs] = React.useState<any[] | null>([])
-  const [user] = useAuthState(auth)
+  const [user, loading] = useAuthState(auth)
 
   React.useEffect(() => {
     const getGraphs = async (uid: string) => {
       const { data } = await getUserTopics(uid)
       setGraphs(data)
     }
-    if (user) getGraphs(user.uid)
+    if (!loading && user) getGraphs(user.uid)
   }, [])
 
   return (

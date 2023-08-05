@@ -63,7 +63,7 @@ export const CommandMenu = () => {
           onSelect: () => runCommand(() => router.push("/dashboard")),
         },
         {
-          title: "Source code",
+          title: "Source Code",
           icon: <Icons.code size={16} className="mr-2" />,
           onSelect: () =>
             runCommand(() =>
@@ -72,6 +72,21 @@ export const CommandMenu = () => {
                 "_blank"
               )
             ),
+        },
+      ],
+    },
+    {
+      name: "Theme",
+      actions: [
+        {
+          title: "Light",
+          icon: <Icons.sun size={16} className="mr-2" />,
+          onSelect: () => runCommand(() => setTheme("light")),
+        },
+        {
+          title: "Dark",
+          icon: <Icons.moon size={16} className="mr-2" />,
+          onSelect: () => runCommand(() => setTheme("dark")),
         },
       ],
     },
@@ -101,21 +116,6 @@ export const CommandMenu = () => {
             runCommand(() =>
               window.open("https://linkedin.com/in/dastanozgeldi/", "_blank")
             ),
-        },
-      ],
-    },
-    {
-      name: "Theme",
-      actions: [
-        {
-          title: "Light",
-          icon: <Icons.sun size={16} className="mr-2" />,
-          onSelect: () => runCommand(() => setTheme("light")),
-        },
-        {
-          title: "Dark",
-          icon: <Icons.moon size={16} className="mr-2" />,
-          onSelect: () => runCommand(() => setTheme("dark")),
         },
       ],
     },

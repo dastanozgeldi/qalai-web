@@ -1,7 +1,7 @@
 import Link from "next/link"
+import { useFormattedDate } from "@/hooks"
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion"
 
-import { useFormattedDate } from "@/hooks/use-formatted-date"
 import { Skeleton } from "@/components/ui/skeleton"
 
 interface GraphItemProps {
