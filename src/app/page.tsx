@@ -4,6 +4,7 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { auth } from "@/firebase/config"
 import { addData } from "@/firebase/firestore"
+import { Timestamp } from "firebase/firestore"
 import { useAuthState } from "react-firebase-hooks/auth"
 import { v4 as uuid } from "uuid"
 
@@ -50,6 +51,7 @@ const Dashboard = () => {
       await addData("topics", uuid(), {
         name: input_text,
         user_id: user?.uid,
+        created_at: Timestamp.fromDate(new Date()),
         ...data,
       })
 
