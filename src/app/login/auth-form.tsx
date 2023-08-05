@@ -33,7 +33,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         onClick={async () => {
           const user = await signInWithGoogle()
           if (user) {
-            router.push("/")
+            router.push("/generate")
           }
         }}
       >
