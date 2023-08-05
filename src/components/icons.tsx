@@ -45,9 +45,9 @@ export const Icons = {
       <path
         fill="none"
         stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
         d="M17.788 5.108A9 9 0 1 0 21 12h-8"
       />
     </svg>
