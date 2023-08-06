@@ -25,6 +25,10 @@ export default function Generate() {
   const [graph, setGraph] = useState<{
     [key: string]: string[]
   } | null>(null)
+  const [adjacencyDict, setAdjacencyDict] = useState<{
+    [key: string]: string[]
+  } | null>(null)
+
   const [preLoader, setPreLoader] = useState(false)
   const router = useRouter()
 
@@ -48,6 +52,7 @@ export default function Generate() {
 
       const data: SuggestionResponse = JSON.parse(await response.json())
       console.log(data)
+      setGraph(data as any)
       await addData("topics", uuid(), {
         name: input_text,
         user_id: user!.uid,
@@ -63,7 +68,7 @@ export default function Generate() {
           topic.connected_topics?.map((outputTopic) => outputTopic.topic) || []
         adjacency_dict[topic.topic] = connected_topics
       }
-      setGraph(adjacency_dict)
+      setAdjacencyDict(adjacency_dict)
     } catch (error) {
       console.error("Error fetching topics graph:", error)
     } finally {
@@ -78,7 +83,7 @@ export default function Generate() {
     user && (
       <div className="max-w-4xl m-auto space-y-6 p-6">
         <AppInputCard loading={preLoader} onSubmit={handleSubmit} />
-        <GraphDisplayCard graph={graph} />
+        <GraphDisplayCard adjacencyDict={adjacencyDict} graph={graph} />
       </div>
     )
   )

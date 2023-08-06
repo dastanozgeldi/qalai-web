@@ -8,10 +8,14 @@ import {
 } from "./ui/card"
 
 interface GraphDisplayCardProps {
-  graph: { [key: string]: string[] } | null
+  adjacencyDict: { [key: string]: string[] } | null
+  graph: any
 }
 
-export function GraphDisplayCard({ graph }: GraphDisplayCardProps) {
+export function GraphDisplayCard({
+  adjacencyDict,
+  graph,
+}: GraphDisplayCardProps) {
   return (
     <Card className="w-full h-screen">
       <CardHeader>
@@ -22,7 +26,7 @@ export function GraphDisplayCard({ graph }: GraphDisplayCardProps) {
       </CardHeader>
       <CardContent style={{ height: "calc(100% - 90px)" }}>
         <div className="w-full h-full">
-          <GraphVisualizer adjacencyDict={graph} />
+          <GraphVisualizer adjacencyDict={adjacencyDict} graph={graph} />
         </div>
       </CardContent>
     </Card>
