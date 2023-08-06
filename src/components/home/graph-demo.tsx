@@ -6,11 +6,12 @@ import { type Graph } from "@/types"
 import { GraphVisualizer } from "../graph-visualizer"
 
 export const GraphDemo = () => {
-  const [graph, setGraph] = useState<Graph>()
+  const [graph, setGraph] = useState<Graph["data"]>()
+  const [adjacencyDict, setAdjacencyDict] = useState({} as any)
 
   useEffect(() => {
     const getDemoGraph = () => {
-      const graph = {
+      const data = {
         name: "human anatomy",
         topic_list: [
           {
@@ -152,10 +153,11 @@ export const GraphDemo = () => {
           },
         ],
       }
+      setGraph(data as any)
 
       const adjacency_dict: { [key: string]: string[] } = {}
 
-      for (const topic of graph.topic_list) {
+      for (const topic of data.topic_list) {
         const connected_topics =
           topic.connected_topics?.map(
             (outputTopic: any) => outputTopic.topic
@@ -163,15 +165,16 @@ export const GraphDemo = () => {
         adjacency_dict[topic.topic] = connected_topics
       }
 
-      setGraph(adjacency_dict as any)
+      setAdjacencyDict(adjacency_dict as any)
     }
     getDemoGraph()
   }, [])
 
   return (
     <GraphVisualizer
-      adjacencyDict={graph}
-      className="lg:w-1/2 border rounded-lg"
+      adjacencyDict={adjacencyDict}
+      graph={graph!}
+      className="border rounded-lg"
     />
   )
 }

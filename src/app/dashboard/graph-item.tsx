@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { useFormattedDate } from "@/hooks"
-import { Graph } from "@/types"
+import { type Graph } from "@/types"
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion"
 
 import { Skeleton } from "@/components/ui/skeleton"

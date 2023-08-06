@@ -1,4 +1,4 @@
-import { Graph } from "@/types"
+import { type Graph } from "@/types"
 import { collection, getDocs, query, where } from "firebase/firestore"
 
 import { db } from "../config"

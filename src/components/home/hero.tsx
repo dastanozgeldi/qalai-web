@@ -52,7 +52,9 @@ export const Hero = () => {
             Start Improving <Icons.right />
           </Button>
         </div>
-        <GraphDemo />
+        <div className="lg:w-1/2 w-full h-full">
+          <GraphDemo />
+        </div>
       </div>
     </motion.div>
   )

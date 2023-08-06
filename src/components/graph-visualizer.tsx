@@ -1,15 +1,27 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
+import { type Graph } from "@/types"
 import * as d3 from "d3"
+import { ChevronRight } from "lucide-react"
+
+import { Button } from "./ui/button"
 
 interface GraphVisualizerProps extends React.HTMLAttributes<SVGSVGElement> {
   adjacencyDict: any
+  graph: Graph["data"]
 }
 
 export function GraphVisualizer({
   adjacencyDict,
+  graph,
   ...props
 }: GraphVisualizerProps) {
+  const [currentTopic, setCurrentTopic] = useState("")
   const d3Container = useRef<SVGSVGElement>(null)
+
+  const getDescription = (name: string) => {
+    const topic = graph.topic_list.find((item) => item.topic === name)
+    return topic ? topic.description : "Topic not found."
+  }
 
   useEffect(() => {
     if (d3Container.current && adjacencyDict) {
@@ -40,6 +52,7 @@ export function GraphVisualizer({
 
         if (selected) {
           // Select the clicked node
+          setCurrentTopic(d.name)
           d.selected = true
           d3.select(this).select("circle").attr("fill", "#f81ce5")
 
@@ -61,7 +74,6 @@ export function GraphVisualizer({
       }
 
       const zoom = d3.zoom().scaleExtent([0.1, 8]).on("zoom", zoomed)
-
       svg.call(zoom as any)
 
       const g = svg.append("g")
@@ -90,6 +102,7 @@ export function GraphVisualizer({
         .force("charge", d3.forceManyBody().strength(-1000))
         .force("center", d3.forceCenter(center.x, center.y))
         .force("collide", d3.forceCollide(60))
+
       const link = g
         .selectAll(".link")
         .data(links)
@@ -151,5 +164,16 @@ export function GraphVisualizer({
     }
   }, [adjacencyDict])
 
-  return <svg ref={d3Container} width="100%" height="100%" {...props} />
+  return (
+    <div className="relative w-full h-full">
+      <svg ref={d3Container} width="100%" height="100%" {...props} />
+      <div className="flex items-center justify-between gap-3 absolute bottom-0 p-4 w-full border rounded-b-lg bg-background">
+        {graph && currentTopic && getDescription(currentTopic)}
+        {!currentTopic && "Click on a node to learn more."}
+        <Button variant="outline" className="flex items-center justify-between">
+          Learn <ChevronRight className="w-4 h-4" />
+        </Button>
+      </div>
+    </div>
+  )
 }

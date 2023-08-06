@@ -55,7 +55,7 @@ function ProcessTabs() {
       </TabsContent>
       <TabsContent value="interact" className="my-4 space-y-3">
         <p className="text-gray-500 text-center">
-          Remember that each item in the graph is a unique chat powered by
+          Remember that each node in the graph is a unique chat powered by
           ChatGPT where you can ask any questions related to the topic.
         </p>
         <video

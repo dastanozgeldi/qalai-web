@@ -3,7 +3,7 @@
 import React from "react"
 import { auth } from "@/firebase/config"
 import { getUserTopics } from "@/firebase/firestore"
-import { Graph } from "@/types"
+import { type Graph } from "@/types"
 import { useAuthState } from "react-firebase-hooks/auth"
 
 import { GraphItem } from "./graph-item"

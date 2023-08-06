@@ -2,6 +2,7 @@
 
 import React from "react"
 import { getData } from "@/firebase/firestore"
+import { type Graph } from "@/types"
 
 import { GraphVisualizer } from "@/components/graph-visualizer"
 
@@ -11,13 +12,9 @@ interface ViewGraphProps {
   }
 }
 
-type Graph = {
-  name: string
-  topic_list: any[]
-}
-
 export default function ViewGraph({ params }: ViewGraphProps) {
-  const [graph, setGraph] = React.useState<Graph>()
+  const [graph, setGraph] = React.useState<Graph["data"]>()
+  const [adjacencyDict, setAdjacencyDict] = React.useState({} as any)
 
   React.useEffect(() => {
     const getGraph = async () => {
@@ -25,7 +22,7 @@ export default function ViewGraph({ params }: ViewGraphProps) {
       const graph = result?.data()
 
       if (!graph) return
-
+      setGraph(graph as Graph["data"])
       const adjacency_dict: { [key: string]: string[] } = {}
 
       for (const topic of graph.topic_list) {
@@ -35,14 +32,18 @@ export default function ViewGraph({ params }: ViewGraphProps) {
           ) || []
         adjacency_dict[topic.topic] = connected_topics
       }
-      setGraph(adjacency_dict as any)
+      setAdjacencyDict(adjacency_dict as any)
     }
     getGraph()
   }, [])
 
   return (
     graph && (
-      <GraphVisualizer adjacencyDict={graph} className="w-full h-screen" />
+      <GraphVisualizer
+        adjacencyDict={adjacencyDict}
+        graph={graph}
+        className="w-full h-[90vh]"
+      />
     )
   )
 }
