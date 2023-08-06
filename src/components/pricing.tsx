@@ -6,12 +6,12 @@ import { buttonVariants } from "@/components/ui/button"
 
 export function Pricing() {
   return (
-    <section className="container flex flex-col  gap-6 py-8 md:max-w-[64rem] md:py-12 lg:py-24">
-      <div className="mx-auto flex w-full flex-col gap-4 md:max-w-[58rem]">
+    <section className="lg:container flex flex-col gap-6 py-8 md:max-w-[64rem] md:py-12 lg:py-24">
+      <div className="text-center lg:text-left mx-auto flex w-full flex-col gap-4 md:max-w-[58rem]">
         <h2 className="font-heading text-4xl leading-[1.1] lg:text-5xl font-extrabold">
           Pricing Plan
         </h2>
-        <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
+        <p className="lg:max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
           Unlock all features including unlimited graphs for your learning
           journey.
         </p>
@@ -45,7 +45,7 @@ export function Pricing() {
         </div>
         <div className="flex flex-col gap-4 text-center">
           <div>
-            <h4 className="text-7xl font-bold">$0</h4>
+            <h4 className="text-5xl lg:text-7xl font-bold">$0</h4>
             <p className="text-sm font-medium text-muted-foreground">
               Billed Monthly
             </p>
