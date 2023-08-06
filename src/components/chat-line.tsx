@@ -12,7 +12,7 @@ export const LoadingChatLine = () => (
   <div className="flex min-w-full animate-pulse px-4 py-5 sm:px-6">
     <div className="flex flex-grow space-x-3">
       <div className="min-w-0 flex-1">
-        <p className="font-large text-xxl text-gray-900">
+        <p className="font-large text-xxl text-foreground">
           <a href="#" className="hover:underline">
             AI
           </a>
@@ -50,10 +50,10 @@ export function ChatLine({ role = "assistant", content }: ChatGPTMessage) {
         role != "assistant" ? "float-right clear-both" : "float-left clear-both"
       }
     >
-      <div className="float-right mb-5 rounded-lg bg-white px-4 py-5 shadow-lg ring-1 ring-zinc-100 sm:px-6">
+      <div className="float-right mb-5 rounded-lg bg-background px-4 py-5 shadow-lg border border-gray-500 sm:px-6">
         <div className="flex space-x-3">
           <div className="flex-1 gap-4">
-            <p className="font-large text-xxl text-gray-900">
+            <p className="font-large text-xxl text-foreground">
               <a href="#" className="hover:underline">
                 {role == "assistant" ? "AI" : "You"}
               </a>
@@ -61,7 +61,7 @@ export function ChatLine({ role = "assistant", content }: ChatGPTMessage) {
             <p
               className={cn(
                 "text ",
-                role == "assistant" ? "font-semibold font- " : "text-gray-400"
+                role == "assistant" ? "font-semibold font- " : "text-foreground"
               )}
             >
               {formatteMessage}
