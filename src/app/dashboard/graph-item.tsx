@@ -18,7 +18,7 @@ export const GraphItem = ({ graph }: { graph: Graph }) => {
     <Link
       key={graph.id}
       href={`/dashboard/${graph.id}`}
-      className="group relative flex flex-col space-y-3 rounded-2xl border border-accent-2 p-6"
+      className="w-full h-full group relative flex flex-col space-y-3 rounded-2xl border border-accent-2 p-6"
       onMouseMove={(e) => {
         const { left, top } = e.currentTarget.getBoundingClientRect()
 
@@ -38,17 +38,9 @@ export const GraphItem = ({ graph }: { graph: Graph }) => {
           `,
         }}
       />
-      {/* eslint-disable @next/next/no-img-element */}
-      <img
-        className="rounded-lg"
-        width={1280}
-        height={720}
-        src="https://images.unsplash.com/photo-1659441891288-2628f5b3a500?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGFlODZ8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=900&q=60"
-        alt={name}
-      />
       <div className="flex-grow space-y-1">
         <h2 className="text-xl font-bold">{name}</h2>
-        <div className="text-gray-400">{topics.toString()} ...</div>
+        <div className="text-gray-400">{topics.toString()} ...more</div>
       </div>
       <div className="flex items-center text-sm">
         {formattedDate ? formattedDate : <Skeleton className="h-5 w-10" />}
