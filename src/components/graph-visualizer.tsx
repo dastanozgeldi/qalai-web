@@ -3,6 +3,7 @@ import { type Graph } from "@/types"
 import * as d3 from "d3"
 import { ChevronRight } from "lucide-react"
 
+import { Learn } from "./learn"
 import { Button } from "./ui/button"
 
 interface GraphVisualizerProps extends React.HTMLAttributes<SVGSVGElement> {
@@ -15,6 +16,7 @@ export function GraphVisualizer({
   graph,
   ...props
 }: GraphVisualizerProps) {
+  const [modalOpen, setModalOpen] = useState(false)
   const [currentTopic, setCurrentTopic] = useState("")
   const d3Container = useRef<SVGSVGElement>(null)
 
@@ -165,15 +167,26 @@ export function GraphVisualizer({
   }, [adjacencyDict])
 
   return (
-    <div className="relative w-full h-full">
-      <svg ref={d3Container} width="100%" height="100%" {...props} />
-      <div className="flex items-center justify-between gap-3 absolute bottom-0 p-4 w-full border rounded-b-lg bg-background">
-        {graph && currentTopic && getDescription(currentTopic)}
-        {!currentTopic && "Click on a node to learn more."}
-        <Button variant="outline" className="flex items-center justify-between">
-          Learn <ChevronRight className="w-4 h-4" />
-        </Button>
+    <>
+      <div className="relative w-full h-full">
+        <svg ref={d3Container} width="100%" height="100%" {...props} />
+        <div className="flex items-center justify-between gap-3 absolute bottom-0 p-4 w-full border rounded-b-lg bg-background">
+          {graph && currentTopic && getDescription(currentTopic)}
+          {!currentTopic && "Click on a node to learn more."}
+          <Button
+            variant="outline"
+            className="flex items-center justify-between"
+            onClick={() => setModalOpen(true)}
+          >
+            Learn <ChevronRight className="w-4 h-4" />
+          </Button>
+        </div>
       </div>
-    </div>
+      <Learn
+        open={!!currentTopic && modalOpen}
+        setOpen={setModalOpen}
+        name={currentTopic}
+      />
+    </>
   )
 }
