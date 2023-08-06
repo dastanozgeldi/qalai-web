@@ -14,7 +14,7 @@ export function Nav() {
       <div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
         <div className="flex gap-6 md:gap-10 items-center">
           <Link href="/" className="flex items-center space-x-2">
-            <Icons.logo width={40} height={20} />
+            <Icons.logo width={24} height={24} />
             <span className="text-lg font-bold sm:inline-block">
               {siteConfig.name}
             </span>
