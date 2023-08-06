@@ -3,7 +3,7 @@
 import React from "react"
 import { getData } from "@/firebase/firestore"
 
-import GraphVisualizer from "@/components/graph-visualizer"
+import { GraphVisualizer } from "@/components/graph-visualizer"
 
 interface ViewGraphProps {
   params: {

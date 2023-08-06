@@ -1,4 +1,4 @@
-import GraphVisualizer from "./graph-visualizer"
+import { GraphVisualizer } from "./graph-visualizer"
 import {
   Card,
   CardContent,
@@ -16,7 +16,9 @@ export function GraphDisplayCard({ graph }: GraphDisplayCardProps) {
     <Card className="w-full h-screen">
       <CardHeader>
         <CardTitle>Topics Graph</CardTitle>
-        <CardDescription>Here are some related topics post generation.</CardDescription>
+        <CardDescription>
+          Here are some related topics post generation.
+        </CardDescription>
       </CardHeader>
       <CardContent style={{ height: "calc(100% - 90px)" }}>
         <div className="w-full h-full">

@@ -5,7 +5,7 @@ interface GraphVisualizerProps extends React.HTMLAttributes<SVGSVGElement> {
   adjacencyDict: any
 }
 
-export default function GraphVisualizer({
+export function GraphVisualizer({
   adjacencyDict,
   ...props
 }: GraphVisualizerProps) {

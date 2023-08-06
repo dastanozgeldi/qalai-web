@@ -2,15 +2,15 @@
 
 import { useRouter } from "next/navigation"
 import { auth } from "@/firebase/config"
-import { Graph } from "@/types"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { useAuthState } from "react-firebase-hooks/auth"
 
 import { Button } from "@/components/ui/button"
-import GraphVisualizer from "@/components/graph-visualizer"
 
-export const Hero = ({ graph }: { graph: Graph | undefined }) => {
+import { GraphDemo } from "./graph-demo"
+
+export const Hero = () => {
   const router = useRouter()
   const [user, loading] = useAuthState(auth)
 
@@ -52,10 +52,7 @@ export const Hero = ({ graph }: { graph: Graph | undefined }) => {
             Start Improving <ArrowRight />
           </Button>
         </div>
-        <GraphVisualizer
-          adjacencyDict={graph}
-          className="lg:w-1/2 border rounded-lg"
-        />
+        <GraphDemo />
       </div>
     </motion.div>
   )
