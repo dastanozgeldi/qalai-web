@@ -1,5 +1,7 @@
 import {
   AlignEndHorizontal,
+  ArrowRight,
+  Check,
   Code2,
   Command,
   Github,
@@ -20,6 +22,8 @@ import {
 export type Icon = LucideIcon
 
 export const Icons = {
+  right: ArrowRight,
+  check: Check,
   home: Home,
   plus: PlusCircle,
   dashboard: AlignEndHorizontal,

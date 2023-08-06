@@ -3,11 +3,11 @@
 import { useRouter } from "next/navigation"
 import { auth } from "@/firebase/config"
 import { motion } from "framer-motion"
-import { ArrowRight } from "lucide-react"
 import { useAuthState } from "react-firebase-hooks/auth"
 
 import { Button } from "@/components/ui/button"
 
+import { Icons } from "../icons"
 import { GraphDemo } from "./graph-demo"
 
 export const Hero = () => {
@@ -49,7 +49,7 @@ export const Hero = () => {
               return router.push("/login")
             }}
           >
-            Start Improving <ArrowRight />
+            Start Improving <Icons.right />
           </Button>
         </div>
         <GraphDemo />

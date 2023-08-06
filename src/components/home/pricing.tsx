@@ -1,8 +1,9 @@
 import Link from "next/link"
-import { Check } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
+
+import { Icons } from "../icons"
 
 export function Pricing() {
   return (
@@ -23,23 +24,23 @@ export function Pricing() {
           </h3>
           <ul className="grid gap-3 text-sm text-muted-foreground sm:grid-cols-2">
             <li className="flex items-center">
-              <Check className="mr-2 h-4 w-4" /> Unlimited Graphs
+              <Icons.check className="mr-2 h-4 w-4" /> Unlimited Graphs
             </li>
             <li className="flex items-center">
-              <Check className="mr-2 h-4 w-4" /> Unlimited Quizzes
+              <Icons.check className="mr-2 h-4 w-4" /> Unlimited Quizzes
             </li>
 
             <li className="flex items-center">
-              <Check className="mr-2 h-4 w-4" /> Prioritized Generation
+              <Icons.check className="mr-2 h-4 w-4" /> Prioritized Generation
             </li>
             <li className="flex items-center">
-              <Check className="mr-2 h-4 w-4" /> GPT-4
+              <Icons.check className="mr-2 h-4 w-4" /> GPT-4
             </li>
             <li className="flex items-center">
-              <Check className="mr-2 h-4 w-4" /> Access to Discord
+              <Icons.check className="mr-2 h-4 w-4" /> Access to Discord
             </li>
             <li className="flex items-center">
-              <Check className="mr-2 h-4 w-4" /> Direct, Premium Support
+              <Icons.check className="mr-2 h-4 w-4" /> Direct, Premium Support
             </li>
           </ul>
         </div>

@@ -1,7 +1,6 @@
 "use-client"
 
 import { useState } from "react"
-import { Check, Loader2 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -14,6 +13,8 @@ import {
 } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
+
+import { Icons } from "./icons"
 
 interface AppInputCardProps {
   onSubmit: (projectDescription: string) => void
@@ -47,7 +48,7 @@ export function AppInputCard(props: AppInputCardProps) {
       <CardFooter>
         {props.loading ? (
           <Button disabled className="w-full">
-            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             Please wait
           </Button>
         ) : (
@@ -57,7 +58,7 @@ export function AppInputCard(props: AppInputCardProps) {
               props.onSubmit(projectDescription)
             }}
           >
-            <Check className="mr-2 h-4 w-4" /> Get Knowledge Graph
+            <Icons.check className="mr-2 h-4 w-4" /> Get Knowledge Graph
           </Button>
         )}
       </CardFooter>
