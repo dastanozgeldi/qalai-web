@@ -26,7 +26,7 @@ export function AppInputCard(props: AppInputCardProps) {
   return (
     <Card className="w-full h-full">
       <CardHeader>
-        <CardTitle>Get a graph of topics</CardTitle>
+        <CardTitle className="font-bold">Get a graph of topics</CardTitle>
         <CardDescription>
           The graph generation process takes ~1 minute.
         </CardDescription>
@@ -38,7 +38,7 @@ export function AppInputCard(props: AppInputCardProps) {
               <Label htmlFor="name">Name</Label>
               <Textarea
                 onChange={(event) => setProjectDescription(event?.target.value)}
-                placeholder="Topic name here."
+                placeholder="Geometry basics"
               />
             </div>
           </div>
@@ -57,7 +57,7 @@ export function AppInputCard(props: AppInputCardProps) {
               props.onSubmit(projectDescription)
             }}
           >
-            <Check className="mr-2 h-4 w-4" /> Get Suggestion
+            <Check className="mr-2 h-4 w-4" /> Get Knowledge Graph
           </Button>
         )}
       </CardFooter>

@@ -8,21 +8,19 @@ import {
 } from "./ui/card"
 
 interface GraphDisplayCardProps {
-  archSuggestion: { [key: string]: string[] } | null
+  graph: { [key: string]: string[] } | null
 }
 
-export function GraphDisplayCard({
-  archSuggestion,
-}: GraphDisplayCardProps) {
+export function GraphDisplayCard({ graph }: GraphDisplayCardProps) {
   return (
     <Card className="w-full h-screen">
       <CardHeader>
-        <CardTitle>Architecture Diagram</CardTitle>
-        <CardDescription>Suggested architecture diagram</CardDescription>
+        <CardTitle>Topics Graph</CardTitle>
+        <CardDescription>Here are some related topics post generation.</CardDescription>
       </CardHeader>
       <CardContent style={{ height: "calc(100% - 90px)" }}>
         <div className="w-full h-full">
-          <GraphVisualizer adjacencyDict={archSuggestion} />
+          <GraphVisualizer adjacencyDict={graph} />
         </div>
       </CardContent>
     </Card>

@@ -8,8 +8,8 @@ import { Timestamp } from "firebase/firestore"
 import { useAuthState } from "react-firebase-hooks/auth"
 import { v4 as uuid } from "uuid"
 
+import { GraphDisplayCard } from "@/components/graph-card"
 import { AppInputCard } from "@/components/input-card"
-import { GraphDisplayCard } from "@/components/suggestions-card"
 
 interface Topic {
   topic: string
@@ -22,7 +22,7 @@ interface SuggestionResponse {
 
 export default function Generate() {
   const [user, loading, error] = useAuthState(auth)
-  const [archSuggestion, setArchSuggestion] = useState<{
+  const [graph, setGraph] = useState<{
     [key: string]: string[]
   } | null>(null)
   const [preLoader, setPreLoader] = useState(false)
@@ -30,7 +30,7 @@ export default function Generate() {
 
   const handleSubmit = async (input_text: string) => {
     setPreLoader(true)
-    setArchSuggestion(null)
+    setGraph(null)
 
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API}/get_graph`, {
@@ -63,9 +63,9 @@ export default function Generate() {
           topic.connected_topics?.map((outputTopic) => outputTopic.topic) || []
         adjacency_dict[topic.topic] = connected_topics
       }
-      setArchSuggestion(adjacency_dict)
+      setGraph(adjacency_dict)
     } catch (error) {
-      console.error("Error fetching architecture suggestion:", error)
+      console.error("Error fetching topics graph:", error)
     } finally {
       setPreLoader(false)
     }
@@ -78,7 +78,7 @@ export default function Generate() {
     user && (
       <div className="max-w-4xl m-auto space-y-6 p-6">
         <AppInputCard loading={preLoader} onSubmit={handleSubmit} />
-        <GraphDisplayCard archSuggestion={archSuggestion} />
+        <GraphDisplayCard graph={graph} />
       </div>
     )
   )

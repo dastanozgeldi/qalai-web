@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/react"
 import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
+import { Footer } from "@/components/footer"
 import { Nav } from "@/components/nav"
 import { ThemeProvider } from "@/components/theme-provider"
 
@@ -44,6 +45,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <div className="relative flex min-h-screen flex-col">
               <Nav />
               <div className="flex-1">{children}</div>
+              <Footer />
             </div>
           </ThemeProvider>
           <Analytics />
