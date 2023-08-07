@@ -23,7 +23,7 @@ export const Learn = ({ open, setOpen, name }: LearnProps) => {
             Make changes to your profile here. Click save when you're done.
           </DialogDescription>
         </DialogHeader>
-        <Chat />
+        <Chat topicName={name} />
       </DialogContent>
     </Dialog>
   )

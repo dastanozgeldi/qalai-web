@@ -1,3 +1,5 @@
+import { Bot, User } from "lucide-react"
+
 import { cn } from "@/lib/utils"
 
 type ChatGPTAgent = "user" | "system" | "assistant"
@@ -42,7 +44,7 @@ export function ChatLine({ role = "assistant", content }: ChatGPTMessage) {
   if (!content) {
     return null
   }
-  const formatteMessage = convertNewLines(content)
+  const formattedMessage = convertNewLines(content)
 
   return (
     <div
@@ -53,10 +55,16 @@ export function ChatLine({ role = "assistant", content }: ChatGPTMessage) {
       <div className="float-right mb-5 rounded-lg bg-background px-4 py-5 shadow-lg border border-gray-500 sm:px-6">
         <div className="flex space-x-3">
           <div className="flex-1 gap-4">
-            <p className="font-large text-xxl text-foreground">
-              <a href="#" className="hover:underline">
-                {role == "assistant" ? "AI" : "You"}
-              </a>
+            <p className="font-bold text-foreground">
+              {role == "assistant" ? (
+                <div className="flex items-center gap-2">
+                  AI <Bot width={16} height={16} />
+                </div>
+              ) : (
+                <div className="flex items-center gap-2">
+                  You <User width={16} height={16} />
+                </div>
+              )}
             </p>
             <p
               className={cn(
@@ -64,7 +72,7 @@ export function ChatLine({ role = "assistant", content }: ChatGPTMessage) {
                 role == "assistant" ? "font-semibold font- " : "text-foreground"
               )}
             >
-              {formatteMessage}
+              {formattedMessage}
             </p>
           </div>
         </div>

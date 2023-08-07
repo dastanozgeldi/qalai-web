@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 
 import { ChatLine, LoadingChatLine, type ChatGPTMessage } from "./chat-line"
 
-const COOKIE_NAME = "nextjs-example-ai-chat-gpt3"
+const COOKIE_NAME = "qalai-ai-chat"
 
 // default first message to display in UI (not necessary to define the prompt)
 export const initialMessages: ChatGPTMessage[] = [
@@ -46,7 +46,7 @@ const InputMessage = ({ input, setInput, sendMessage }: any) => (
   </div>
 )
 
-export function Chat() {
+export function Chat({ topicName }: { topicName: string }) {
   const [messages, setMessages] = useState<ChatGPTMessage[]>(initialMessages)
   const [input, setInput] = useState("")
   const [loading, setLoading] = useState(false)
@@ -76,6 +76,7 @@ export function Chat() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        topicName,
         messages: last10messages,
         user: cookie[COOKIE_NAME],
       }),
